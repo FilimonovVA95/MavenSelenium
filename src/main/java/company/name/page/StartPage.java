@@ -95,7 +95,7 @@ public class StartPage extends AbstractPage {
      * @return true, если элемент найден
      */
     private boolean checkAboutProduction() {
-        return loginButton.isEnabled();
+        return checkAboutProduction.isEnabled();
     }
 
     /**
@@ -103,7 +103,7 @@ public class StartPage extends AbstractPage {
      * @return true, если элемент найден
      */
     private boolean checkPrice() {
-        return loginButton.isEnabled();
+        return checkPrice.isEnabled();
     }
 
     /**
@@ -111,7 +111,7 @@ public class StartPage extends AbstractPage {
      * @return true, если элемент найден
      */
     private boolean checkFAQ() {
-        return loginButton.isEnabled();
+        return checkFAQ.isEnabled();
     }
 
     /**
@@ -119,7 +119,7 @@ public class StartPage extends AbstractPage {
      * @return true, если элемент найден
      */
     private boolean checkWantTestSite() {
-        return loginButton.isEnabled();
+        return checkWantTestSite.isEnabled();
     }
 
 
