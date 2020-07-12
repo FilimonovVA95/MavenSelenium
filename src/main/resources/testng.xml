@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite">
+    <test name="OnlyStartPage" >
+        <classes>
+            <class name="company.name.positive.StartPageTest" />
+        </classes>
+    </test>
+
+    <test name="StartPageFirst">
+        <classes>
+            <class name="company.name.positive.StartPageTest"/>
+            <class name="company.name.positive.AuthenticationClientTest"/>
+        </classes>
+    </test>
+
+    <test name="OnlyAuthentication" >
+        <classes>
+            <class name="company.name.positive.AuthenticationClientTest" />
+        </classes>
+    </test>
+
+    <test name="OnlyPositive" >
+        <packages>
+            <package name="company.name.positive" />
+        </packages>
+    </test>
+
+</suite>
+
+
+
+

@@ -50,35 +50,35 @@ public class StartPage extends AbstractPage {
     @Step("Открыть тестовый стенд")
     public void openTestStand() {
         DriverManager.getDriver().get(getStand());;
-        checkStep("Проверяем активность кнопки 'Войти'",
+        checkAndScreenShotStep("Проверяем активность кнопки 'Войти'",
                 checkLoginButton(), "Open test stand exception");
     }
 
     @Step("Нажать кнопку 'О продукте'")
     public void openAboutProductionButton() {
         aboutProductionButton.click();
-        checkStep("Проверяем открытие страницы 'О продукте'",
+        checkAndScreenShotStep("Проверяем открытие страницы 'О продукте'",
                 checkAboutProduction(), "Open about production page exception");
     }
 
     @Step("Нажать кнопку 'Цены'")
     public void openPrice() {
         priceButton.click();
-        checkStep("Проверяем открытие страницы 'Цены'",
+        checkAndScreenShotStep("Проверяем открытие страницы 'Цены'",
                 checkPrice(), "Open price page exception");
     }
 
     @Step("Нажать кнопку 'FAQ'")
     public void openFAQ() {
         faqButton.click();
-        checkStep("Проверяем открытие страницы 'FAQ'",
+        checkAndScreenShotStep("Проверяем открытие страницы 'FAQ'",
                 checkFAQ(), "Open FAQ page exception");
     }
 
     @Step("Нажать кнопку 'Хочу стать тестировщиком'")
     public void openWantTestSites() {
         wantTestSitesButton.click();
-        checkStep("Проверяем открытие страницы 'Хочу стать тестировщиком'",
+        checkAndScreenShotStep("Проверяем открытие страницы 'Хочу стать тестировщиком'",
                 checkWantTestSite(), "Open want test sites page exception");
     }
 

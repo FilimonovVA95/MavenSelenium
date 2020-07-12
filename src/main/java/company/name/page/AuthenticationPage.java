@@ -45,51 +45,51 @@ public class AuthenticationPage extends AbstractPage {
     @Step("Открыть тестовый стенд")
     public void openTestStand(){
         DriverManager.getDriver().get(getStand());
-        checkStep("Проверяем активность кнопки 'Войти'", checkLoginButton(), "Open test stand exception");
+        checkAndScreenShotStep("Проверяем активность кнопки 'Войти'", checkLoginButton(), "Open test stand exception");
     }
 
     @Step("Открываем PopUp")
     public void openPopUp() {
         loginButton.click();
-        checkStep("Проверяем открытие окна авторизации", checkClickLogIn(), "Open popUp exception");
+        checkAndScreenShotStep("Проверяем открытие окна авторизации", checkClickLogIn(), "Open popUp exception");
     }
 
     @Step("Ввести e-mail")
     public void inputEmail (String email){
         loginFiled.sendKeys(email);
-        checkStep("Проверяем правильность ввода email",checkLoginFiled(email),"Input email authorization exception");
+        checkAndScreenShotStep("Проверяем правильность ввода email",checkLoginFiled(email),"Input email authorization exception");
     }
 
     @Step("Ввести пароль")
     public void inputPassword(String password){
         passwordField.sendKeys(password);
-        checkStep("Проверяем правильность ввода пароля", checkPasswordField(password), "Input password authorization exception");
+        checkAndScreenShotStep("Проверяем правильность ввода пароля", checkPasswordField(password), "Input password authorization exception");
     }
 
     @Step("Нажать кнопку войти")
     public void clickAuthentication(){
         clickLogIn.click();
-        checkStep("Проверяем активность кнопки 'Выйти'", checkClickLogOut(), "Client login exception");
+        checkAndScreenShotStep("Проверяем активность кнопки 'Выйти'", checkClickLogOut(), "Client login exception");
     }
 
     @Step("Нажать кнопку войти с пустым паролем")
     public void clickAuthenticationPasswordNull(){
         clickLogIn.click();
-        checkStep("Проверяем наличие ошибки о некорректности введенных данных. Пустой пароль",
+        checkAndScreenShotStep("Проверяем наличие ошибки о некорректности введенных данных. Пустой пароль",
                 checkInCorrectEmailOrPasswordNull("Введите пароль"), "Error expected null password");
     }
 
     @Step("Нажать кнопку войти с пустым email")
     public void clickAuthenticationEmailNull(){
         clickLogIn.click();
-        checkStep("Проверяем наличие ошибки о некорректности введенных данных. Пустой email",
+        checkAndScreenShotStep("Проверяем наличие ошибки о некорректности введенных данных. Пустой email",
                 checkInCorrectEmailOrPasswordNull("Введите почту"), "Error expected null email");
     }
 
     @Step("Нажать кнопку войти при некорректном пароле или email")
     public void clickAuthenticationError(){
         clickLogIn.click();
-        checkStep("Проверяем наличие ошибки о некорректности введенных данных",
+        checkAndScreenShotStep("Проверяем наличие ошибки о некорректности введенных данных",
                 checkInCorrectEmailOrPasswordError(), "Error expected no correct password or email");
     }
 
@@ -108,7 +108,7 @@ public class AuthenticationPage extends AbstractPage {
     @Step("Нажать кнопку выйти")
     public void logOut(){
         clickLogOut.click();
-        checkStep("Проверяем активность кнопки 'Войти'", checkLoginButton(), "Client LogOut exception");
+        checkAndScreenShotStep("Проверяем активность кнопки 'Войти'", checkLoginButton(), "Client LogOut exception");
     }
 
     /**

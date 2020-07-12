@@ -1,11 +1,19 @@
 package company.name.page;
 
 import company.name.DriverManager;
+import io.qameta.allure.Attachment;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import static io.qameta.allure.Allure.step;
 
@@ -40,9 +48,26 @@ public abstract class AbstractPage {
         return testStand;
     }
 
-    protected void checkStep (String nameStep, boolean check, String message) {
+    protected void checkAndScreenShotStep(String nameStep, boolean check, String message) {
+        screenShotStep();
         step(nameStep, () -> {
             Assert.assertTrue(check, message);
         });
+    }
+
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] screenShotStep() {
+        TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
+        byte[] screenByte = ts.getScreenshotAs(OutputType.BYTES);
+        File screen = ts.getScreenshotAs(OutputType.FILE);
+        String screenName = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+        String className = this.getClass().getSimpleName();
+        try {
+            FileUtils.copyFile(screen, new File("./target/ScreenShots/" + className + "/" + screenName + "_Screenshot.png"));
+        } catch (IOException e) {
+            System.out.println("Exception while taking ScreenShot "+e.getMessage());
+            e.printStackTrace();
+        }
+        return screenByte;
     }
 }
