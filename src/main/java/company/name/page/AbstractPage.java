@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
-import static io.qameta.allure.Allure.step;
+
 
 
 /**
@@ -54,13 +54,12 @@ public abstract class AbstractPage {
             screenShotStep(nameStep);
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("Save screenShot exception");
         }
-        step(nameStep, () -> {
-            Assert.assertTrue(check, message);
-        });
+        Assert.assertTrue(check, message);
     }
 
-    public void screenShotStep(String screenName) throws IOException {
+    private void screenShotStep(String screenName) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
         File screen = ts.getScreenshotAs(OutputType.FILE);
         String screenData = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());

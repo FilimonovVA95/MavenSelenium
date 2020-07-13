@@ -122,6 +122,4 @@ public class StartPage extends AbstractPage {
         return checkWantTestSite.isEnabled();
     }
 
-
-
 }
