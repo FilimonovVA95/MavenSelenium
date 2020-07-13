@@ -3,7 +3,6 @@ package company.name;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;

@@ -14,7 +14,7 @@ public class AuthenticationClientTest {
 
     private AuthenticationPage step = new AuthenticationPage();
 
-    @Test
+    @Test(groups = "exclude")
     public void authenticationClient() {
         step.openTestStand();
         step.openPopUp();

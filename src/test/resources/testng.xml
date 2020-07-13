@@ -2,10 +2,23 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite">
+
     <test name="OnlyStartPage" >
         <classes>
             <class name="company.name.positive.StartPageTest" />
         </classes>
+    </test>
+
+    <test name="Group" >
+        <groups>
+            <run>
+                <exclude name="exclude"/>
+                <include name="include" />
+            </run>
+        </groups>
+        <packages>
+            <package name="company.name.positive" />
+        </packages>
     </test>
 
     <test name="StartPageFirst">

@@ -1,21 +1,22 @@
 package company.name.page;
 
 import company.name.DriverManager;
-import io.qameta.allure.Attachment;
+import io.qameta.allure.Allure;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 import static io.qameta.allure.Allure.step;
+
 
 /**
  * Асбтрактный класс страницы. Загружает ссылку на тест-стенд из файла конфигурации и подгружает указанные веб-элементы
@@ -49,25 +50,28 @@ public abstract class AbstractPage {
     }
 
     protected void checkAndScreenShotStep(String nameStep, boolean check, String message) {
-        screenShotStep();
+        try {
+            screenShotStep(nameStep);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         step(nameStep, () -> {
             Assert.assertTrue(check, message);
         });
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] screenShotStep() {
+    public void screenShotStep(String screenName) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) DriverManager.getDriver();
-        byte[] screenByte = ts.getScreenshotAs(OutputType.BYTES);
         File screen = ts.getScreenshotAs(OutputType.FILE);
-        String screenName = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
+        String screenData = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
         String className = this.getClass().getSimpleName();
+        String fullName = "." + File.separator + "target" + File.separator + "screen-shots" + File.separator + className + File.separator + screenData + "_Screenshot.png";
         try {
-            FileUtils.copyFile(screen, new File("./target/ScreenShots/" + className + "/" + screenName + "_Screenshot.png"));
+            FileUtils.copyFile(screen, new File(fullName));
         } catch (IOException e) {
             System.out.println("Exception while taking ScreenShot "+e.getMessage());
             e.printStackTrace();
         }
-        return screenByte;
+        Allure.addAttachment(screenName + " " + screenData, new FileInputStream(screen));
     }
 }
